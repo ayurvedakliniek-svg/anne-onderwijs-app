@@ -1,4 +1,24 @@
-import streamlit as st
+if level == "High School (Regents)":
+    grade = st.sidebar.selectbox("Leerjaar (Indicatie):", ["Grade 9", "Grade 10", "Grade 11", "Grade 12"])
+    cat = st.sidebar.selectbox("Categorie:", ["Mathematics", "Science", "English", "Social Studies", "World Languages"])
+    
+    if cat == "Mathematics": sub = st.sidebar.selectbox("Vak:", ["Algebra I", "Geometry", "Algebra II"])
+    elif cat == "Science": sub = st.sidebar.selectbox("Vak:", ["Living Environment", "Earth Science", "Chemistry", "Physics"])
+    elif cat == "English": sub = "ELA Regents (Grade 11)"
+    elif cat == "Social Studies": sub = st.sidebar.selectbox("Vak:", ["Global History", "U.S. History"])
+    elif cat == "World Languages": sub = f"{st.sidebar.selectbox('Taal:', world_languages)} Regents"
+    
+    subject = f"{grade} {sub}"
+    grade = st.sidebar.selectbox("Leerjaar (Indicatie):", ["Grade 9", "Grade 10", "Grade 11", "Grade 12"])
+    cat = st.sidebar.selectbox("Categorie:", ["Mathematics", "Science", "English", "Social Studies", "World Languages"])
+    
+    if cat == "Mathematics": sub = st.sidebar.selectbox("Vak:", ["Algebra I", "Geometry", "Algebra II"])
+    elif cat == "Science": sub = st.sidebar.selectbox("Vak:", ["Living Environment", "Earth Science", "Chemistry", "Physics"])
+    elif cat == "English": sub = "ELA Regents (Grade 11)"
+    elif cat == "Social Studies": sub = st.sidebar.selectbox("Vak:", ["Global History", "U.S. History"])
+    elif cat == "World Languages": sub = f"{st.sidebar.selectbox('Taal:', world_languages)} Regents"
+    
+    subject = f"{grade} {sub}"import streamlit as st
 from openai import OpenAI
 import os
 import json
@@ -104,4 +124,5 @@ with tab4:
     st.subheader("🏛️ NYSED Informatie")
     st.write("Hier vind je de belangrijkste regels van de New York State Education Department.")
     st.info("Tip: Gebruik de chat voor specifieke vragen over diploma-eisen.")
+
 
