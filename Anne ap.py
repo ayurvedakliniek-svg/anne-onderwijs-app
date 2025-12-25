@@ -7,12 +7,16 @@ import datetime
 
 # --- 1. CONFIGURATIE ---
 # De API key wordt veilig uit de Streamlit Secrets gehaald
+# VERBETERDE SETUP VOOR FOUTMELDINGEN
 try:
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-except:
-    st.error("API Key niet gevonden in Secrets!")
-
-st.set_page_config(page_title="Anne - Personal Assistant", page_icon="🎓", layout="wide")
+    if "OPENAI_API_KEY" in st.secrets:
+        client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    else:
+        st.error("❌ FOUT: OPENAI_API_KEY ontbreekt in de Streamlit Secrets!")
+        st.stop()
+except Exception as e:
+    st.error(f"❌ Er is een technische fout opgetreden: {e}")
+    st.stop()
 
 # Initialiseer sessiegeheugen
 if "score_history" not in st.session_state: st.session_state.score_history = []
@@ -139,3 +143,4 @@ with tab3:
         st.table(pd.DataFrame(st.session_state.score_history))
     else:
         st.info("Nog geen resultaten.")
+
