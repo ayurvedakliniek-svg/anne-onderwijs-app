@@ -7,8 +7,7 @@ import datetime
 
 # --- 1. CONFIGURATIE ---
 # Vul hier je eigen API key in
-client = OpenAI(api_key="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")
-
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 st.set_page_config(page_title="Anne - NY Expert", page_icon="🎓", layout="wide")
 
 # Initialiseer sessiegeheugen
@@ -105,3 +104,4 @@ with tab4:
     st.subheader("🏛️ NYSED Informatie")
     st.write("Hier vind je de belangrijkste regels van de New York State Education Department.")
     st.info("Tip: Gebruik de chat voor specifieke vragen over diploma-eisen.")
+
